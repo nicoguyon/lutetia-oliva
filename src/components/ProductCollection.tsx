@@ -55,7 +55,7 @@ export default function ProductCollection({ onAddToCart, onProductClick }: Produ
       tagline: 'Édition limitée 2024',
       price: 32,
       volume: '250ml',
-      image: '/1.png',
+      image: '/haussmann.png',
       rating: 4.8,
       reviews: 89,
       badge: 'Limitée',
@@ -71,17 +71,6 @@ export default function ProductCollection({ onAddToCart, onProductClick }: Produ
       rating: 4.7,
       reviews: 156,
       polyphenols: '780 mg/kg'
-    },
-    {
-      id: '4',
-      name: 'Soleil Marais',
-      tagline: 'Pressage traditionnel',
-      price: 26,
-      volume: '500ml',
-      image: '/1.png',
-      rating: 4.9,
-      reviews: 203,
-      polyphenols: '810 mg/kg'
     }
   ];
 

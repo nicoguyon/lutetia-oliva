@@ -24,6 +24,7 @@ export default function Navigation({ cartCount, onCartClick }: NavigationProps) 
     { label: 'Rooftop', href: '/#story', icon: Building, isExternal: true },
     { label: 'Traçabilité', href: '/#trace', icon: Fingerprint, isExternal: true },
     { label: 'Histoire', href: '/histoire', icon: Book, isExternal: false },
+    { label: 'Ils parlent de nous', href: '/instagram', icon: Book, isExternal: false },
   ];
 
   return (

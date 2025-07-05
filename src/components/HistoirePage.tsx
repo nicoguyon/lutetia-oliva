@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navigation from './Navigation';
+import Footer from './Footer';
 
 export default function HistoirePage() {
   return (
@@ -62,6 +63,7 @@ export default function HistoirePage() {
           <span className="text-[#9BAA8B] italic text-sm">Plan de Lutèce, Paris antique (gravure historique)</span>
         </div>
       </section>
+      <Footer />
     </div>
   );
 } 

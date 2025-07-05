@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import ProductPage from './components/ProductPage';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import HistoirePage from './components/HistoirePage';
+import InstagramPage from './components/InstagramPage';
 
 interface CartItem {
   id: string;
@@ -129,6 +130,7 @@ function App() {
           </div>
         } />
         <Route path="/histoire" element={<HistoirePage />} />
+        <Route path="/instagram" element={<InstagramPage />} />
       </Routes>
     </BrowserRouter>
   );

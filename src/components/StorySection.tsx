@@ -227,7 +227,7 @@ export default function StorySection() {
         </div>
 
         {/* Slider Design - Nouveau */}
-        <div className="mb-4">
+        <div className="slider-container mb-0">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-[#3F4B3A] mb-4">
               Découvrez notre design

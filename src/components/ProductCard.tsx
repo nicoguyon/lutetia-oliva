@@ -45,7 +45,6 @@ export default function ProductCard({ product, onAddToCart, onProductClick }: Pr
 
         {/* Quick Add Button */}
         <button 
-          onClick={() => onAddToCart(product)}
           className={`absolute top-4 right-4 w-12 h-12 bg-[#C9A76D] hover:bg-[#B8860B] text-white rounded-full flex items-center justify-center transition-all duration-300 transform ${
             isHovered ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
           } hover:scale-110 shadow-lg hover:shadow-xl z-10`}

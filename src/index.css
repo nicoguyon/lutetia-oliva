@@ -259,3 +259,12 @@ img {
     display: none !important;
   }
 }
+
+/* Remonte le titre 'La transparence...' */
+#trace h2:first-child {
+  margin-top: -50px;
+}
+
+.slider-container {
+  margin-top: 50px;
+}
