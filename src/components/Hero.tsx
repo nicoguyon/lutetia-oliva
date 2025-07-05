@@ -28,23 +28,21 @@ export default function Hero() {
 
   // Slider automatique avec gestion spéciale pour la vidéo
   useEffect(() => {
-    const interval = setInterval(() => {
-      setBgIndex((prev) => {
-        // Si on est sur la vidéo et qu'elle n'est pas terminée, ne pas changer
-        if (prev === 2 && !isVideoEnded) {
-          return prev;
-        }
-        // Sinon, passer au slide suivant
-        return (prev + 1) % 3;
-      });
-    }, 8000);
-    return () => clearInterval(interval);
-  }, [isVideoEnded]);
+    let interval: ReturnType<typeof setInterval> | null = null;
+    if (bgIndex !== 0) {
+      interval = setInterval(() => {
+        setBgIndex((prev) => (prev + 1) % 3);
+      }, 8000);
+    }
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [bgIndex]);
 
   // Gestion de la vidéo
   useEffect(() => {
     if (videoRef.current) {
-      if (bgIndex === 2) {
+      if (bgIndex === 0) {
         // Quand la vidéo est active
         setIsVideoEnded(false); // Reset l'état de fin
         videoRef.current.currentTime = 0; // Remettre à zéro
@@ -76,23 +74,6 @@ export default function Hero() {
       <div className="absolute inset-0 z-0 transition-all duration-1000">
         {bgIndex === 0 ? (
           <>
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/30 z-10 transition-opacity duration-1000 opacity-100" />
-            <div className="w-full h-full bg-gradient-to-br from-[#3F4B3A] via-[#9BAA8B] to-[#C9A76D] opacity-90 transition-opacity duration-1000" />
-            <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-[#C9A76D]/10 blur-3xl animate-pulse" />
-            <div className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full bg-[#9BAA8B]/10 blur-3xl animate-pulse" style={{animationDelay: '2s'}} />
-          </>
-        ) : bgIndex === 1 ? (
-          <>
-            <div className="absolute inset-0 bg-black/20 z-10 transition-opacity duration-1000 opacity-100" />
-            <img 
-              src="/oliviers-paris.png" 
-              alt="Oliviers sur les toits de Paris" 
-              className="w-full h-full object-cover transition-opacity duration-1000 opacity-100" 
-              style={{filter: 'brightness(0.7)'}}
-            />
-          </>
-        ) : (
-          <>
             <div className="absolute inset-0 bg-black/30 z-10 transition-opacity duration-1000 opacity-100" />
             <video
               ref={videoRef}
@@ -105,6 +86,23 @@ export default function Hero() {
               <source src="/hero-video.webm" type="video/webm" />
               Votre navigateur ne supporte pas la lecture de vidéos.
             </video>
+          </>
+        ) : bgIndex === 1 ? (
+          <>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/30 z-10 transition-opacity duration-1000 opacity-100" />
+            <div className="w-full h-full bg-gradient-to-br from-[#3F4B3A] via-[#9BAA8B] to-[#C9A76D] opacity-90 transition-opacity duration-1000" />
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-[#C9A76D]/10 blur-3xl animate-pulse" />
+            <div className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full bg-[#9BAA8B]/10 blur-3xl animate-pulse" style={{animationDelay: '2s'}} />
+          </>
+        ) : (
+          <>
+            <div className="absolute inset-0 bg-black/20 z-10 transition-opacity duration-1000 opacity-100" />
+            <img 
+              src="/oliviers-paris.png" 
+              alt="Oliviers sur les toits de Paris" 
+              className="w-full h-full object-cover transition-opacity duration-1000 opacity-100" 
+              style={{filter: 'brightness(0.7)'}}
+            />
           </>
         )}
       </div>
@@ -136,7 +134,7 @@ export default function Hero() {
           <img 
             src="/logo-lutetia.png" 
             alt="Lutetia Oliva Logo"
-            className="w-24 h-24 sm:w-32 sm:h-32 lg:w-40 lg:h-40 mb-6 opacity-0 animate-fadeInUp"
+            className="w-24 h-24 sm:w-32 sm:h-32 lg:w-40 lg:h-40 mb-6 opacity-0 animate-fadeInUp rounded-full"
             style={{animationDelay: '0.2s', animationFillMode: 'both'}}
           />
           <span className="block opacity-0 animate-fadeInUp" style={{animationDelay: '0.5s', animationFillMode: 'both'}}>
@@ -167,7 +165,7 @@ export default function Hero() {
           <button
             className="group flex items-center space-x-2 px-6 py-4 bg-white/10 backdrop-blur-sm text-white border border-white/20 rounded-full hover:bg-white/20 transition-all duration-300"
             onClick={() => {
-              if (bgIndex === 2 && videoRef.current) {
+              if (bgIndex === 0 && videoRef.current) {
                 if (isVideoPlaying) {
                   videoRef.current.pause();
                   setIsVideoPlaying(false);
@@ -178,13 +176,13 @@ export default function Hero() {
               }
             }}
           >
-            {bgIndex === 2 && isVideoPlaying ? (
+            {bgIndex === 0 && isVideoPlaying ? (
               <Pause className="w-5 h-5 fill-current" />
             ) : (
               <Play className="w-5 h-5 fill-current" />
             )}
             <span className="font-medium">
-              {bgIndex === 2 ? (isVideoPlaying ? 'Pause' : 'Lecture') : 'Voir la récolte'}
+              {bgIndex === 0 ? (isVideoPlaying ? 'Pause' : 'Lecture') : 'Voir la récolte'}
             </span>
           </button>
         </div>
