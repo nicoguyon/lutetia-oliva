@@ -71,7 +71,7 @@ export default function ProductCollection({ onAddToCart, onProductClick }: Produ
       rating: 4.7,
       reviews: 156,
       polyphenols: '780 mg/kg'
-    }
+    },
   ];
 
   const filteredProducts = products.filter(product => {

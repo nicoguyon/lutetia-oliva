@@ -4,10 +4,11 @@ import Footer from './Footer';
 
 // Exemple de données (à remplacer par vos vraies URLs)
 const instagramMedia = [
-  { type: 'image', src: '/influencer1.jpg', alt: 'Influenceuse Lutetia Oliva 1' },
+  { type: 'video', src: '/influencer1.mp4', alt: 'Vidéo Influenceur Lutetia Oliva 1' },
   { type: 'image', src: '/influencer3.jpg', alt: 'Influenceurs Lutetia Oliva 3' },
   { type: 'image', src: '/influencer4.jpg', alt: 'Influenceuse Lutetia Oliva 4' },
   { type: 'video', src: '/influencer2.mp4', alt: 'Vidéo Influenceur Lutetia Oliva' },
+  { type: 'video', src: '/Simulation.mp4', alt: 'Vidéo Simulation Influenceur Lutetia Oliva' },
   // Ajoutez ici vos autres médias
 ];
 
@@ -24,11 +25,11 @@ export default function InstagramPage() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {instagramMedia.map((media, idx) => (
-            <div key={idx} className="aspect-[9/16] bg-white rounded-2xl shadow-lg overflow-hidden flex items-center justify-center">
+            <div key={idx} className="aspect-[9/16] bg-white rounded-3xl shadow-2xl overflow-hidden flex items-center justify-center mx-auto max-w-xs sm:max-w-sm md:max-w-md" style={{maxWidth: 400}}>
               {media.type === 'image' ? (
-                <img src={media.src} alt={media.alt} className="w-full h-full object-cover" />
+                <img src={media.src} alt={media.alt} className="w-full h-full object-cover" style={{maxWidth: '100%', maxHeight: '100%'}} />
               ) : (
-                <video src={media.src} controls className="w-full h-full object-cover" />
+                <video src={media.src} controls className="w-full h-full object-cover" style={{maxWidth: '100%', maxHeight: '100%'}} />
               )}
             </div>
           ))}

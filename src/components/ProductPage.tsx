@@ -49,8 +49,8 @@ export default function ProductPage({ isOpen, onClose, onAddToCart }: ProductPag
     },
     {
       id: '5',
-      src: '/nico16184_dark-green_matte_glass_olive_oil_bottle_Lutetia_Oliva_41bb75ab-9467-4819-9ebd-8b5d521748a6.webp',
-      alt: 'Bouteille sur balcon parisien avec herbes fraîches',
+      src: '/5eme image.png',
+      alt: 'Huile d\'olive versée sur burrata et tomates',
       type: 'lifestyle'
     },
     // Ajout de la vue 3D
