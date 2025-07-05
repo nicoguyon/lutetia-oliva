@@ -22,7 +22,7 @@ export default function Navigation({ cartCount, onCartClick }: NavigationProps) 
     { label: 'Collection', href: '#collection', icon: Droplet },
     { label: 'Rooftop', href: '#story', icon: Building },
     { label: 'Traçabilité', href: '#trace', icon: Fingerprint },
-    { label: 'Journal', href: '#journal', icon: Book },
+    { label: 'Histoire', href: '/histoire', icon: Book },
   ];
 
   return (

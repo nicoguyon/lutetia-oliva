@@ -7,6 +7,8 @@ import TraceabilitySection from './components/TraceabilitySection';
 import Cart from './components/Cart';
 import Footer from './components/Footer';
 import ProductPage from './components/ProductPage';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import HistoirePage from './components/HistoirePage';
 
 interface CartItem {
   id: string;
@@ -79,37 +81,39 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F5F4EB]">
-      <Navigation 
-        cartCount={cartCount} 
-        onCartClick={() => setIsCartOpen(true)} 
-      />
-      
-      <Hero />
-      
-      <ProductCollection 
-        onAddToCart={handleAddToCart} 
-        onProductClick={handleProductClick}
-      />
-      
-      <StorySection />
-      <TraceabilitySection />
-      <Footer />
-      
-      <Cart
-        isOpen={isCartOpen}
-        onClose={() => setIsCartOpen(false)}
-        items={cartItems}
-        onUpdateQuantity={handleUpdateQuantity}
-        onRemoveItem={handleRemoveItem}
-      />
-      
-      <ProductPage
-        isOpen={isProductPageOpen}
-        onClose={() => setIsProductPageOpen(false)}
-        onAddToCart={handleAddToCart}
-      />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={
+          <div className="min-h-screen bg-[#F5F4EB]">
+            <Navigation 
+              cartCount={cartCount} 
+              onCartClick={() => setIsCartOpen(true)} 
+            />
+            <Hero />
+            <ProductCollection 
+              onAddToCart={handleAddToCart} 
+              onProductClick={handleProductClick}
+            />
+            <StorySection />
+            <TraceabilitySection />
+            <Footer />
+            <Cart
+              isOpen={isCartOpen}
+              onClose={() => setIsCartOpen(false)}
+              items={cartItems}
+              onUpdateQuantity={handleUpdateQuantity}
+              onRemoveItem={handleRemoveItem}
+            />
+            <ProductPage
+              isOpen={isProductPageOpen}
+              onClose={() => setIsProductPageOpen(false)}
+              onAddToCart={handleAddToCart}
+            />
+          </div>
+        } />
+        <Route path="/histoire" element={<HistoirePage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

@@ -22,7 +22,7 @@ export default function ProductPage({ isOpen, onClose, onAddToCart }: ProductPag
   const galleryRef = useRef<HTMLDivElement>(null);
 
   // Utilisation des nouvelles images
-  const productImages: ProductImage[] = [
+  const productImages: (ProductImage | { id: string; type: 'iframe'; alt: string; })[] = [
     {
       id: '1',
       src: '/1.png',
@@ -32,7 +32,7 @@ export default function ProductPage({ isOpen, onClose, onAddToCart }: ProductPag
     {
       id: '2',
       src: '/ef480767ef1ece37df058bba2a5c721eaa92b11ceb4ca7d608715d9a72f56b37.png',
-      alt: 'Huile d\'olive coulant sur pain artisanal',
+      alt: "Huile d'olive coulant sur pain artisanal",
       type: 'lifestyle'
     },
     {
@@ -52,6 +52,12 @@ export default function ProductPage({ isOpen, onClose, onAddToCart }: ProductPag
       src: '/nico16184_dark-green_matte_glass_olive_oil_bottle_Lutetia_Oliva_41bb75ab-9467-4819-9ebd-8b5d521748a6.webp',
       alt: 'Bouteille sur balcon parisien avec herbes fraîches',
       type: 'lifestyle'
+    },
+    // Ajout de la vue 3D
+    {
+      id: '6',
+      type: 'iframe',
+      alt: 'Visite 3D du produit'
     }
   ];
 
@@ -204,11 +210,24 @@ export default function ProductPage({ isOpen, onClose, onAddToCart }: ProductPag
                 <div className="space-y-6">
                   {/* Main Image */}
                   <div className="relative aspect-square bg-white/60 backdrop-blur-sm rounded-3xl overflow-hidden border border-white/20 group">
-                    <img
-                      src={productImages[currentImageIndex].src}
-                      alt={productImages[currentImageIndex].alt}
-                      className="w-full h-full object-contain p-8 transition-transform duration-700 group-hover:scale-105"
-                    />
+                    {productImages[currentImageIndex].type === 'iframe' ? (
+                      <iframe
+                        src="https://www.tripo3d.ai/embed?share=eeb16a8e-53a0-4521-b3cc-921f3f0ba8e8"
+                        width="100%"
+                        height="100%"
+                        frameBorder="0"
+                        allowFullScreen
+                        title="Visite 3D du produit"
+                        className="w-full h-full rounded-3xl"
+                        style={{ minHeight: 320 }}
+                      />
+                    ) : (
+                      <img
+                        src={(productImages[currentImageIndex] as ProductImage).src}
+                        alt={productImages[currentImageIndex].alt}
+                        className="w-full h-full object-contain p-8 transition-transform duration-700 group-hover:scale-105"
+                      />
+                    )}
                     
                     {/* Navigation Arrows */}
                     <button
@@ -242,11 +261,17 @@ export default function ProductPage({ isOpen, onClose, onAddToCart }: ProductPag
                             : 'border-white/20 hover:border-[#C9A76D]/50'
                         }`}
                       >
-                        <img
-                          src={image.src}
-                          alt={image.alt}
-                          className="w-full h-full object-contain bg-white/40 p-2"
-                        />
+                        {image.type === 'iframe' ? (
+                          <div className="w-full h-full flex items-center justify-center bg-white/40">
+                            <svg width="32" height="32" fill="none" viewBox="0 0 24 24"><rect width="24" height="24" rx="6" fill="#C9A76D"/><text x="12" y="16" textAnchor="middle" fontSize="12" fill="#fff">3D</text></svg>
+                          </div>
+                        ) : (
+                          <img
+                            src={(image as ProductImage).src}
+                            alt={image.alt}
+                            className="w-full h-full object-contain bg-white/40 p-2"
+                          />
+                        )}
                       </button>
                     ))}
                   </div>
