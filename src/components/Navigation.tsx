@@ -20,9 +20,9 @@ export default function Navigation({ cartCount, onCartClick }: NavigationProps) 
   }, []);
 
   const navItems = [
-    { label: 'Collection', href: '#collection', icon: Droplet, isExternal: true },
-    { label: 'Rooftop', href: '#story', icon: Building, isExternal: true },
-    { label: 'Traçabilité', href: '#trace', icon: Fingerprint, isExternal: true },
+    { label: 'Collection', href: '/#collection', icon: Droplet, isExternal: true },
+    { label: 'Rooftop', href: '/#story', icon: Building, isExternal: true },
+    { label: 'Traçabilité', href: '/#trace', icon: Fingerprint, isExternal: true },
     { label: 'Histoire', href: '/histoire', icon: Book, isExternal: false },
   ];
 
@@ -54,15 +54,15 @@ export default function Navigation({ cartCount, onCartClick }: NavigationProps) 
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               item.isExternal ? (
-                <a
+                <Link
                   key={item.label}
-                  href={item.href}
+                  to={item.href}
                   className="group relative flex items-center space-x-2 text-sm font-medium text-[#3F4B3A] hover:text-[#C9A76D] transition-colors duration-300"
                 >
                   <item.icon className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
                   <span>{item.label}</span>
                   <div className="absolute -bottom-2 left-0 w-0 h-0.5 bg-gradient-to-r from-[#C9A76D] to-[#B8860B] transition-all duration-300 group-hover:w-full"></div>
-                </a>
+                </Link>
               ) : (
                 <Link
                   key={item.label}
@@ -112,33 +112,18 @@ export default function Navigation({ cartCount, onCartClick }: NavigationProps) 
       }`}>
         <div className="flex flex-col justify-center items-center h-full space-y-8">
           {navItems.map((item, index) => (
-            item.isExternal ? (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={() => setIsMenuOpen(false)}
-                className="group flex items-center space-x-4 text-2xl font-medium text-[#3F4B3A] hover:text-[#C9A76D] transition-all duration-300"
-                style={{
-                  animation: isMenuOpen ? `slideInUp 0.6s ease-out ${index * 0.1}s both` : 'none'
-                }}
-              >
-                <item.icon className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
-                <span>{item.label}</span>
-              </a>
-            ) : (
-              <Link
-                key={item.label}
-                to={item.href}
-                onClick={() => setIsMenuOpen(false)}
-                className="group flex items-center space-x-4 text-2xl font-medium text-[#3F4B3A] hover:text-[#C9A76D] transition-all duration-300"
-                style={{
-                  animation: isMenuOpen ? `slideInUp 0.6s ease-out ${index * 0.1}s both` : 'none'
-                }}
-              >
-                <item.icon className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
-                <span>{item.label}</span>
-              </Link>
-            )
+            <Link
+              key={item.label}
+              to={item.href}
+              onClick={() => setIsMenuOpen(false)}
+              className="group flex items-center space-x-4 text-2xl font-medium text-[#3F4B3A] hover:text-[#C9A76D] transition-all duration-300"
+              style={{
+                animation: isMenuOpen ? `slideInUp 0.6s ease-out ${index * 0.1}s both` : 'none'
+              }}
+            >
+              <item.icon className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
+              <span>{item.label}</span>
+            </Link>
           ))}
         </div>
       </div>

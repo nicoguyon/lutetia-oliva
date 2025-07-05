@@ -1,0 +1,25 @@
+INSTRUCTIONS POUR AJOUTER UNE VIDÉO AU SLIDER HERO
+
+Pour ajouter une vidéo au slider d'accueil, placez votre fichier vidéo dans ce dossier (public/) avec l'un de ces noms :
+
+1. hero-video.mp4 (format MP4 recommandé)
+2. hero-video.webm (format WebM pour une meilleure compatibilité)
+
+Recommandations pour la vidéo :
+- Durée : 10-15 secondes maximum
+- Format : MP4 ou WebM
+- Résolution : 1920x1080 ou 1280x720
+- Taille de fichier : Moins de 10MB pour un chargement rapide
+- Contenu suggéré : 
+  * Vue des oliviers sur les toits de Paris
+  * Processus de récolte des olives
+  * Vue de la bouteille Lutetia Oliva
+  * Ambiance parisienne avec oliviers
+
+La vidéo sera automatiquement :
+- En lecture automatique (muted)
+- En boucle
+- Avec un overlay sombre pour la lisibilité du texte
+- Intégrée dans le slider qui tourne toutes les 8 secondes
+
+Une fois le fichier vidéo ajouté, supprimez ce fichier placeholder. 

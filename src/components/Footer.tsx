@@ -115,14 +115,14 @@ export default function Footer() {
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-[#C9A76D]" />
                 <div>
-                  <p className="font-medium">+33 1 23 45 67 89</p>
+                  <p className="font-medium">06 52 26 25 48</p>
                   <p className="text-sm text-[#9BAA8B]">Lun-Ven 9h-18h</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-[#C9A76D]" />
                 <div>
-                  <p className="font-medium">bonjour@lutetiaoliva.com</p>
+                  <p className="font-medium">nicoguyon@gmail.com</p>
                   <p className="text-sm text-[#9BAA8B]">Réponse sous 24h</p>
                 </div>
               </div>

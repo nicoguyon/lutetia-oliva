@@ -12,6 +12,7 @@ export default function HistoirePage() {
             <img src="/logo-lutetia.png" alt="Logo Lutetia Oliva" className="mx-auto w-24 h-24 rounded-full shadow-lg hover:scale-110 transition-transform duration-300" />
           </Link>
           <h1 className="text-5xl font-bold text-[#3F4B3A] mb-8">L'Histoire de Lutetia Oliva</h1>
+
           <p className="text-lg text-[#9BAA8B] mb-12">
             Lutetia Oliva, c'est la rencontre entre l'élégance parisienne et la tradition méditerranéenne. 
             Notre aventure commence sur les toits de Paris, où des oliviers centenaires s'épanouissent au-dessus de la ville lumière.
@@ -50,6 +51,15 @@ export default function HistoirePage() {
               </p>
             </div>
           </div>
+        </div>
+        {/* Carte ancienne de Lutèce en bas de page */}
+        <div className="flex flex-col items-center mt-16 mb-4">
+          <img 
+            src="/lutece.png" 
+            alt="Plan ancien de Lutèce, Paris antique" 
+            className="w-full max-w-2xl rounded-2xl shadow-2xl border-4 border-[#C9A76D]/30 mb-3 object-cover bg-white" 
+          />
+          <span className="text-[#9BAA8B] italic text-sm">Plan de Lutèce, Paris antique (gravure historique)</span>
         </div>
       </section>
     </div>

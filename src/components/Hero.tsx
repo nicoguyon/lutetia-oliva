@@ -1,10 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Play, ChevronDown } from 'lucide-react';
+import { Play, ChevronDown, Pause } from 'lucide-react';
 
 export default function Hero() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const scrollIndicatorRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [bgIndex, setBgIndex] = useState(0);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [isVideoEnded, setIsVideoEnded] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,13 +26,49 @@ export default function Hero() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Slider automatique
+  // Slider automatique avec gestion spéciale pour la vidéo
   useEffect(() => {
     const interval = setInterval(() => {
-      setBgIndex((prev) => (prev + 1) % 2);
-    }, 6000);
+      setBgIndex((prev) => {
+        // Si on est sur la vidéo et qu'elle n'est pas terminée, ne pas changer
+        if (prev === 2 && !isVideoEnded) {
+          return prev;
+        }
+        // Sinon, passer au slide suivant
+        return (prev + 1) % 3;
+      });
+    }, 8000);
     return () => clearInterval(interval);
-  }, []);
+  }, [isVideoEnded]);
+
+  // Gestion de la vidéo
+  useEffect(() => {
+    if (videoRef.current) {
+      if (bgIndex === 2) {
+        // Quand la vidéo est active
+        setIsVideoEnded(false); // Reset l'état de fin
+        videoRef.current.currentTime = 0; // Remettre à zéro
+        videoRef.current.play().then(() => {
+          setIsVideoPlaying(true);
+        }).catch(() => {
+          setIsVideoPlaying(false);
+        });
+      } else {
+        // Quand la vidéo n'est pas active
+        videoRef.current.pause();
+        setIsVideoPlaying(false);
+      }
+    }
+  }, [bgIndex]);
+
+  const handleVideoEnded = () => {
+    setIsVideoPlaying(false);
+    setIsVideoEnded(true);
+    // Attendre 2 secondes après la fin de la vidéo avant de passer au slide suivant
+    setTimeout(() => {
+      setBgIndex((prev) => (prev + 1) % 3);
+    }, 2000);
+  };
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
@@ -42,14 +81,50 @@ export default function Hero() {
             <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-[#C9A76D]/10 blur-3xl animate-pulse" />
             <div className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full bg-[#9BAA8B]/10 blur-3xl animate-pulse" style={{animationDelay: '2s'}} />
           </>
+        ) : bgIndex === 1 ? (
+          <>
+            <div className="absolute inset-0 bg-black/20 z-10 transition-opacity duration-1000 opacity-100" />
+            <img 
+              src="/oliviers-paris.png" 
+              alt="Oliviers sur les toits de Paris" 
+              className="w-full h-full object-cover transition-opacity duration-1000 opacity-100" 
+              style={{filter: 'brightness(0.7)'}}
+            />
+          </>
         ) : (
-          <img 
-            src="/oliviers-paris.png" 
-            alt="Oliviers sur les toits de Paris" 
-            className="w-full h-full object-cover transition-opacity duration-1000 opacity-100" 
-            style={{filter: 'brightness(0.7)'}}
-          />
+          <>
+            <div className="absolute inset-0 bg-black/30 z-10 transition-opacity duration-1000 opacity-100" />
+            <video
+              ref={videoRef}
+              className="w-full h-full object-cover transition-opacity duration-1000 opacity-100"
+              muted
+              playsInline
+              onEnded={handleVideoEnded}
+            >
+              <source src="/hero-video.mp4" type="video/mp4" />
+              <source src="/hero-video.webm" type="video/webm" />
+              Votre navigateur ne supporte pas la lecture de vidéos.
+            </video>
+          </>
         )}
+      </div>
+
+      {/* Indicateurs de slide */}
+      <div className="absolute top-8 right-8 z-30 flex space-x-2">
+        {[0, 1, 2].map((index) => (
+          <button
+            key={index}
+            onClick={() => {
+              setBgIndex(index);
+              setIsVideoEnded(false); // Reset l'état de fin quand on clique manuellement
+            }}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              bgIndex === index 
+                ? 'bg-white scale-125' 
+                : 'bg-white/50 hover:bg-white/75'
+            }`}
+          />
+        ))}
       </div>
 
       {/* Hero Content */}
@@ -89,9 +164,28 @@ export default function Hero() {
             <div className="absolute inset-0 bg-white/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </button>
 
-          <button className="group flex items-center space-x-2 px-6 py-4 bg-white/10 backdrop-blur-sm text-white border border-white/20 rounded-full hover:bg-white/20 transition-all duration-300">
-            <Play className="w-5 h-5 fill-current" />
-            <span className="font-medium">Voir la récolte</span>
+          <button
+            className="group flex items-center space-x-2 px-6 py-4 bg-white/10 backdrop-blur-sm text-white border border-white/20 rounded-full hover:bg-white/20 transition-all duration-300"
+            onClick={() => {
+              if (bgIndex === 2 && videoRef.current) {
+                if (isVideoPlaying) {
+                  videoRef.current.pause();
+                  setIsVideoPlaying(false);
+                } else {
+                  videoRef.current.play();
+                  setIsVideoPlaying(true);
+                }
+              }
+            }}
+          >
+            {bgIndex === 2 && isVideoPlaying ? (
+              <Pause className="w-5 h-5 fill-current" />
+            ) : (
+              <Play className="w-5 h-5 fill-current" />
+            )}
+            <span className="font-medium">
+              {bgIndex === 2 ? (isVideoPlaying ? 'Pause' : 'Lecture') : 'Voir la récolte'}
+            </span>
           </button>
         </div>
       </div>

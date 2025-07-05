@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import ProductCollection from './components/ProductCollection';
@@ -7,7 +7,7 @@ import TraceabilitySection from './components/TraceabilitySection';
 import Cart from './components/Cart';
 import Footer from './components/Footer';
 import ProductPage from './components/ProductPage';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import HistoirePage from './components/HistoirePage';
 
 interface CartItem {
@@ -30,6 +30,22 @@ interface Product {
   reviews: number;
   badge?: string;
   polyphenols: string;
+}
+
+// Scroll automatique vers l'ancre si présente dans l'URL
+function ScrollToHash() {
+  const location = useLocation();
+  useEffect(() => {
+    if (location.hash) {
+      const el = document.querySelector(location.hash);
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100); // petit délai pour que le DOM soit prêt
+      }
+    }
+  }, [location]);
+  return null;
 }
 
 function App() {
@@ -82,6 +98,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <ScrollToHash />
       <Routes>
         <Route path="/" element={
           <div className="min-h-screen bg-[#F5F4EB]">
