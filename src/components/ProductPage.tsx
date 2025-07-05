@@ -141,12 +141,15 @@ export default function ProductPage({ isOpen, onClose, onAddToCart }: ProductPag
   };
 
   const handleAddToCart = () => {
+    const firstImage = productImages[0];
+    const imageSrc = firstImage.type === 'iframe' ? '/1.png' : firstImage.src;
+    
     onAddToCart({
       id: product.id,
       name: product.name,
       price: product.price,
       volume: selectedSize,
-      image: productImages[0].src,
+      image: imageSrc,
       quantity: quantity
     });
   };
