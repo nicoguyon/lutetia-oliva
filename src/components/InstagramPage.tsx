@@ -9,6 +9,8 @@ const instagramMedia = [
   { type: 'image', src: '/influencer4.jpg', alt: 'Influenceuse Lutetia Oliva 4' },
   { type: 'video', src: '/influencer2.mp4', alt: 'Vidéo Influenceur Lutetia Oliva' },
   { type: 'video', src: '/Simulation.mp4', alt: 'Vidéo Simulation Influenceur Lutetia Oliva' },
+  { type: 'image', src: '/Party.png', alt: 'Photo soirée Lutetia Oliva' },
+  { type: 'image', src: '/Cartoon.png', alt: 'Illustration cartoon Lutetia Oliva' },
   // Ajoutez ici vos autres médias
 ];
 

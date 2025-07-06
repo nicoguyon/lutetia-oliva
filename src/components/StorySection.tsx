@@ -297,6 +297,10 @@ export default function StorySection() {
             </div>
           </div>
         </div>
+        {/* Image situation.png */}
+        <div className="flex justify-center my-12">
+          <img src="/situation.png" alt="Bouteilles Lutetia Oliva alignées" className="rounded-3xl shadow-2xl max-w-4xl w-full object-cover" />
+        </div>
 
         {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
