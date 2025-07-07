@@ -27,6 +27,9 @@ export default function HistoirePage() {
                 cultivée, pressée et embouteillée au cœur de Paris. Chaque goutte raconte l'histoire d'une ville, 
                 d'un terroir urbain et d'une passion pour l'excellence.
               </p>
+              <div className="flex justify-center my-8">
+                <img src="/fondateur.png" alt="Portrait du fondateur Lutetia Oliva" className="rounded-3xl shadow-2xl max-w-md w-full object-cover" />
+              </div>
             </div>
             <div>
               <h2 className="text-2xl font-bold mb-2">Des valeurs fortes</h2>

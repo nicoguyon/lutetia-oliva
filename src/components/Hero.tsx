@@ -31,7 +31,7 @@ export default function Hero() {
     let interval: ReturnType<typeof setInterval> | null = null;
     if (bgIndex !== 0) {
       interval = setInterval(() => {
-        setBgIndex((prev) => (prev + 1) % 3);
+        setBgIndex((prev) => (prev + 1) % 4);
       }, 8000);
     }
     return () => {
@@ -64,7 +64,7 @@ export default function Hero() {
     setIsVideoEnded(true);
     // Attendre 2 secondes après la fin de la vidéo avant de passer au slide suivant
     setTimeout(() => {
-      setBgIndex((prev) => (prev + 1) % 3);
+      setBgIndex((prev) => (prev + 1) % 4);
     }, 2000);
   };
 
@@ -94,6 +94,16 @@ export default function Hero() {
             <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-[#C9A76D]/10 blur-3xl animate-pulse" />
             <div className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full bg-[#9BAA8B]/10 blur-3xl animate-pulse" style={{animationDelay: '2s'}} />
           </>
+        ) : bgIndex === 2 ? (
+          <>
+            <div className="absolute inset-0 bg-black/20 z-10 transition-opacity duration-1000 opacity-100" />
+            <img 
+              src="/fondateur.png" 
+              alt="Portrait du fondateur Lutetia Oliva" 
+              className="w-full h-full object-cover transition-opacity duration-1000 opacity-100" 
+              style={{filter: 'brightness(0.95)'}}
+            />
+          </>
         ) : (
           <>
             <div className="absolute inset-0 bg-black/20 z-10 transition-opacity duration-1000 opacity-100" />
@@ -109,7 +119,7 @@ export default function Hero() {
 
       {/* Indicateurs de slide */}
       <div className="absolute top-8 right-8 z-30 flex space-x-2">
-        {[0, 1, 2].map((index) => (
+        {[0, 1, 2, 3].map((index) => (
           <button
             key={index}
             onClick={() => {
@@ -156,9 +166,9 @@ export default function Hero() {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 opacity-0 animate-fadeInUp" style={{animationDelay: '1.7s', animationFillMode: 'both'}}>
-          <button className="group relative px-8 py-4 bg-gradient-to-r from-[#C9A76D] to-[#B8860B] text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+          <button className="group relative px-8 py-4 bg-gradient-to-r from-[#D212FF] to-pink-500 text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl">
             <span className="relative z-10">Découvrir la collection</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-[#FFD700] to-[#C9A76D] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#D212FF] to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div className="absolute inset-0 bg-white/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </button>
 

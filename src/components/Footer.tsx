@@ -47,7 +47,7 @@ export default function Footer() {
                 depuis les toits de Paris jusqu'à votre table.
               </p>
               <div className="flex space-x-3">
-                <a href="#" className="w-8 h-8 bg-white/10 hover:bg-[#C9A76D] rounded-full flex items-center justify-center transition-colors duration-200">
+                <a href="https://www.instagram.com/lutetia_oliva/" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-white/10 hover:bg-[#D212FF] rounded-full flex items-center justify-center transition-colors duration-200">
                   <Instagram className="w-4 h-4" />
                 </a>
                 <a href="#" className="w-8 h-8 bg-white/10 hover:bg-[#C9A76D] rounded-full flex items-center justify-center transition-colors duration-200">

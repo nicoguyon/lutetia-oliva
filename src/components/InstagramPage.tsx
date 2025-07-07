@@ -11,6 +11,7 @@ const instagramMedia = [
   { type: 'video', src: '/Simulation.mp4', alt: 'Vidéo Simulation Influenceur Lutetia Oliva' },
   { type: 'image', src: '/Party.png', alt: 'Photo soirée Lutetia Oliva' },
   { type: 'image', src: '/Cartoon.png', alt: 'Illustration cartoon Lutetia Oliva' },
+  { type: 'image', src: '/Nicolas.png', alt: 'Portrait de Nicolas fondateur Lutetia Oliva' },
   // Ajoutez ici vos autres médias
 ];
 
